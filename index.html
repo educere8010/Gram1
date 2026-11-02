@@ -1,0 +1,787 @@
+<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>오르다 지문 어법 고1 — 들어가며 · 점검 순서 여섯 단계</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1E4A3C; --navy-2:#2A6350; --mint:#6CACA2; --mint-soft:#E7F1EE;
+  --paper:#F6F4EE; --cream:#FBF9F4; --card:#FFF;
+  --line:#E4DFD2; --line-2:#EDE9DF; --rule:#CFC8B8;
+  --ink:#1F2A26; --muted:#6A756F; --faint:#8C968F;
+  --accent:#5E8C5A; --accent-ink:#51784D; --accent-soft:#EDF3EC;
+  --warn:#B34420; --warn-soft:#FBEFEA;
+}
+html,body{height:100%}
+body{background:#2B332F;font-family:Pretendard,'Noto Sans KR',system-ui,-apple-system,sans-serif;
+  letter-spacing:-.025em;color:var(--ink);-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{word-break:keep-all;text-wrap:balance;font-weight:800}
+
+/* ── 한 장 ─────────────────────────────────────────── */
+.deck{display:flex;flex-direction:column;align-items:center;gap:26px;padding:26px 0 90px}
+.sl{position:relative;width:1280px;height:720px;background:var(--paper);overflow:hidden;
+  box-shadow:0 10px 36px rgba(0,0,0,.34);display:flex;flex-direction:column}
+.sl::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;z-index:3;
+  background:linear-gradient(90deg,#5C6BC0 0 14.3%,#C2702B 14.3% 28.6%,#2E8B6B 28.6% 42.9%,
+    #2E75B6 42.9% 57.2%,#C0497B 57.2% 71.5%,#1F7A8C 71.5% 85.8%,#9C5BB0 85.8%)}
+
+/* 머리 */
+.hd{flex:0 0 auto;padding:30px 54px 0;display:flex;align-items:flex-start;gap:16px}
+.hd .tt{flex:1 1 auto;min-width:0}
+.hd h2{font-size:40px;line-height:1.2;color:var(--navy);letter-spacing:-.035em}
+.hd .sub{margin-top:7px;font-size:19px;font-weight:700;color:var(--muted);line-height:1.4}
+.hd .badge{flex:0 0 auto;display:flex;flex-direction:column;align-items:flex-end;gap:6px;padding-top:4px}
+.hd .sec{font-size:15px;font-weight:800;color:#fff;background:var(--navy);
+  border-radius:999px;padding:5px 15px;white-space:nowrap}
+.hd .min{font-size:14px;font-weight:800;color:var(--navy);background:var(--mint-soft);
+  border:1px solid var(--mint);border-radius:999px;padding:4px 13px;white-space:nowrap}
+.hd::after{content:"";position:absolute;left:54px;right:54px;top:112px;height:3px;background:var(--mint);opacity:.55}
+
+/* 몸 */
+.bd{flex:1 1 auto;min-height:0;padding:30px 54px 20px;display:flex;flex-direction:column;gap:16px;overflow:hidden}
+.sl.cover .bd,.sl.part .bd{justify-content:center;align-items:center;text-align:center;gap:22px}
+
+/* 발 */
+.ft{flex:0 0 auto;height:40px;padding:0 54px;display:flex;align-items:center;gap:12px;
+  border-top:1px solid var(--line);font-size:13px;font-weight:700;color:var(--faint);background:var(--cream)}
+.ft .sp{margin-left:auto}
+.ft b{color:var(--navy)}
+
+/* ── 블록 ──────────────────────────────────────────── */
+.lead{font-size:30px;font-weight:800;line-height:1.42;color:var(--navy)}
+.lead b{color:var(--warn)}
+.lead em{font-style:normal;background:var(--mint-soft);border-radius:5px;padding:1px 7px}
+
+.rule{background:var(--card);border:2px solid var(--mint);border-radius:10px;padding:16px 22px}
+.rule .rt{font-size:17px;font-weight:800;color:#fff;background:var(--navy);display:inline-block;
+  border-radius:5px;padding:3px 12px;margin-bottom:9px}
+.rule .rb{font-size:24px;font-weight:700;line-height:1.5}
+.rule .rb b{color:var(--warn)}
+.rule .rb code{font-family:Consolas,'Courier New',monospace;font-size:23px;font-weight:700;
+  background:var(--mint-soft);border-radius:4px;padding:1px 6px}
+
+.ex{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--navy);
+  border-radius:0 8px 8px 0;padding:13px 20px}
+.ex .en{font-size:23px;font-weight:600;line-height:1.5;color:var(--ink)}
+.ex .en b,.ex .en u{color:var(--warn);font-weight:800;text-underline-offset:4px}
+.ex .ko{margin-top:5px;font-size:18px;font-weight:600;color:var(--muted);line-height:1.45}
+.ex .nt{margin-top:7px;font-size:17px;font-weight:700;color:var(--accent-ink);line-height:1.45}
+.ex .nt b{color:var(--warn)}
+
+.cols{display:flex;gap:14px;align-items:stretch}
+.cols>div{flex:1 1 0;min-width:0;background:var(--card);border:1px solid var(--line);
+  border-radius:9px;padding:14px 18px}
+.cols .ct{font-size:18px;font-weight:800;color:var(--navy);margin-bottom:7px;
+  padding-bottom:6px;border-bottom:2px solid var(--mint)}
+.cols .cb{font-size:20px;font-weight:600;line-height:1.52}
+.cols .cb b{color:var(--warn)}
+.cols .cb code{font-family:Consolas,'Courier New',monospace;font-size:19px;font-weight:700}
+
+.qa{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:15px 20px}
+.qa .qq{font-size:23px;font-weight:700;line-height:1.5}
+.qa .qq b{color:var(--navy)}
+.qa .aa{margin-top:11px;border-top:1px dashed var(--rule);padding-top:11px;cursor:pointer;position:relative}
+.qa .aa .av{font-size:24px;font-weight:800;color:var(--warn);line-height:1.45}
+.qa .aa .aw{margin-top:6px;font-size:18px;font-weight:600;color:var(--muted);line-height:1.45}
+/* 가림막 — 클릭하거나 A 키를 누르면 벗겨진다 */
+.qa .aa.hide .av,.qa .aa.hide .aw{visibility:hidden}
+.qa .aa.hide::after{content:"답 보기  ▸  클릭 또는 A";position:absolute;inset:11px 0 0;
+  display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:800;
+  color:var(--muted);background:var(--accent-soft);border:1px dashed var(--accent);border-radius:7px}
+
+table.tb{width:100%;border-collapse:collapse;background:var(--card)}
+table.tb th{background:var(--navy);color:#fff;font-size:17px;font-weight:800;padding:9px 12px;
+  border:1px solid var(--navy-2);text-align:left}
+table.tb td{font-size:20px;font-weight:600;line-height:1.42;padding:9px 12px;border:1px solid var(--line);vertical-align:top}
+table.tb td b{color:var(--warn)}
+table.tb tr:nth-child(even) td{background:var(--cream)}
+table.tb td code{font-family:Consolas,'Courier New',monospace;font-size:19px;font-weight:700}
+/* 조밀 — 열두 줄짜리 표가 칸(568px)을 넘길 때만 쓴다. 전자칠판에서는 17px 도 충분히 크다 */
+table.tb.sm th{font-size:15px;padding:6px 10px}
+table.tb.sm td{font-size:17px;line-height:1.34;padding:5px 10px}
+table.tb.sm td code{font-size:16px}
+
+ul.ls,ol.ls{padding-left:0;list-style:none}
+ul.ls li,ol.ls li{position:relative;font-size:22px;font-weight:600;line-height:1.52;
+  padding-left:34px;margin-bottom:9px}
+ul.ls li::before{content:"·";position:absolute;left:12px;top:-2px;font-size:28px;font-weight:900;color:var(--mint)}
+ol.ls{counter-reset:n}
+ol.ls li{counter-increment:n}
+ol.ls li::before{content:counter(n);position:absolute;left:0;top:3px;width:25px;height:25px;line-height:25px;
+  text-align:center;font-size:14px;font-weight:800;color:#fff;background:var(--navy);border-radius:50%}
+.ls li b{color:var(--warn)}
+.ls li code{font-family:Consolas,'Courier New',monospace;font-size:21px;font-weight:700}
+
+.warn{background:var(--warn-soft);border:2px solid var(--warn);border-radius:9px;padding:13px 20px;
+  font-size:21px;font-weight:700;line-height:1.5;color:#7A2E15}
+.warn b{color:var(--warn)}
+.star{background:var(--mint-soft);border:2px solid var(--mint);border-radius:9px;padding:13px 20px;
+  font-size:21px;font-weight:700;line-height:1.5;color:var(--navy)}
+.star b{color:var(--warn)}
+.nt2{font-size:17px;font-weight:600;color:var(--muted);line-height:1.45}
+
+/* 표지 · 부 표지 */
+.sl.cover{background:var(--navy)}
+.sl.cover .hd,.sl.cover .ft{display:none}
+.sl.cover .bd{color:#fff;padding:0 90px}
+.sl.cover h1{font-size:62px;line-height:1.16;color:#fff;letter-spacing:-.045em}
+.sl.cover .cs{font-size:25px;font-weight:700;color:#BFD6CE;line-height:1.5}
+.sl.cover .cbox{margin-top:12px;border:1px solid #47705F;border-radius:12px;padding:20px 34px;
+  font-size:22px;font-weight:700;color:#DCEAE4;line-height:1.6}
+.sl.cover .cbox b{color:#9FD8C7}
+.sl.part{background:var(--cream)}
+.sl.part .hd{display:none}
+.sl.part h1{font-size:52px;color:var(--navy);line-height:1.2}
+.sl.part .cs{font-size:24px;font-weight:700;color:var(--muted);margin-top:4px}
+.sl.part .cbox{margin-top:10px;background:var(--card);border:2px solid var(--mint);border-radius:12px;
+  padding:18px 30px;font-size:22px;font-weight:700;line-height:1.6;color:var(--navy)}
+.sl.part .cbox b{color:var(--warn)}
+
+/* ── 화면 조작 막대 ─────────────────────────────────── */
+#bar{position:fixed;left:0;right:0;bottom:0;height:46px;background:rgba(30,74,60,.96);
+  display:flex;align-items:center;gap:14px;padding:0 18px;color:#DCEAE4;font-size:14px;font-weight:700;z-index:50}
+#bar button{font:inherit;color:#1E4A3C;background:#DCEAE4;border:0;border-radius:6px;padding:6px 13px;cursor:pointer}
+#bar button:hover{background:#fff}
+#bar .sp{margin-left:auto}
+#bar .pg{font-variant-numeric:tabular-nums}
+body.one .deck{padding:0;gap:0}
+body.one .sl{display:none}
+body.one .sl.on{display:flex}
+body.one{background:#1A201D;display:flex;align-items:center;justify-content:center;height:100vh;overflow:hidden}
+body.one .deck{height:100vh;justify-content:center}
+
+/* ── 인쇄 — 한 쪽에 한 장, 정답은 전부 보이게 ────────── */
+@media print{
+  @page{size:1280px 720px;margin:0}
+  body{background:#fff}
+  body.one{display:block;height:auto;overflow:visible}
+  body.one .deck{height:auto;padding:0;display:block}
+  body.one .sl{display:flex !important}
+  #bar{display:none}
+  /* 11-02 화면 맞춤 배율(fit 의 deck zoom)이 인쇄에도 남아 PDF 가 반쯤 크기로 찍혔다 → 인쇄는 늘 1배 */
+  .deck{padding:0;gap:0;zoom:1 !important}
+  .sl{box-shadow:none;break-after:page;page-break-after:always}
+  .sl:last-child{break-after:auto;page-break-after:auto}
+  .qa .aa.hide .av,.qa .aa.hide .aw{visibility:visible !important}
+  .qa .aa.hide::after{display:none !important}
+}
+.mk-v{text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:6px}
+.mk-s{border:2.5px solid var(--navy);padding:0 6px;border-radius:3px}
+.mk-x{color:var(--muted)}
+.mk-c{border:2.5px solid var(--mint);border-radius:999px;padding:0 8px}
+.mk4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.mk4 div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-size:20px;line-height:1.45}
+.mk4 b{display:block;font-size:26px;margin-bottom:6px;color:var(--navy)}
+.ex .en .mk-s,.ex .en .mk-c{font-weight:600}
+.ex .en .mk-x{font-weight:500}
+.bad{color:var(--warn);font-weight:700}
+</style></head>
+<body>
+<div class="deck">
+<section class="sl cover" data-min="1">
+  <div class="bd">
+    <h1>고1 지문 어법<br>1회차를 풀기 전에</h1>
+    <div class="cs">어떤 문장이든 <b>같은 여섯 단계</b>로 확인한다</div>
+    <div class="cbox"><b>①</b> 동사 &nbsp; <b>②</b> 주어 &nbsp; <b>③</b> 능동·수동 &nbsp; <b>④</b> 준동사 &nbsp; <b>⑤</b> 연결어 &nbsp; <b>⑥</b> 품사·대명사</div>
+  </div>
+  
+</section>
+<section class="sl" data-min="3">
+  <div class="hd">
+    <div class="tt"><h2>「어법상 틀린 것」을 왜 놓칠까</h2><div class="sub">문법을 몰라서보다 먼저</div></div>
+    <div class="badge"><span class="sec">들어가며</span><span class="min">3분</span></div>
+  </div>
+  <div class="bd">
+    <div class="lead">문장을 읽어 보고 <b>「이상하지 않다」</b>로 넘기기 때문이다.</div>
+    <div class="rule"><div class="rt">고1 시험은 이렇게 나온다</div><div class="rb">고1 시험의 밑줄은 단어에서 <b>구(句)</b>로 길어지고, 「틀린 것 하나」뿐 아니라 <b>「있는 대로 고르기」「틀린 것의 개수」</b>가 나온다. 하나를 찾았다고 멈추면 안 된다는 뜻이다. 그래서 감으로 고르지 않고 <b>모든 밑줄을 같은 여섯 단계로 끝까지</b> 확인한다.</div></div>
+    <div class="star">그래서 이 책은 문법을 단원으로 나누지 않는다. 밑줄이 몇 개든 <b>끝까지 여섯 단계</b>를 돈다.</div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>들어가며</span><span class="sp">2 / 49</span></div>
+</section>
+<section class="sl" data-min="4">
+  <div class="hd">
+    <div class="tt"><h2>문장에 표시하는 법</h2><div class="sub">모든 문장에 같은 기호를 쓴다</div></div>
+    <div class="badge"><span class="sec">들어가며</span><span class="min">4분</span></div>
+  </div>
+  <div class="bd">
+    <div class="mk4"><div><b><span class="mk-v">동사</span></b>밑줄 — 절마다 하나</div><div><b><span class="mk-s">주어</span></b>네모 — 머리 명사만</div><div><b><span class="mk-x">( 수식어 )</span></b>괄호로 묶어 걷어 낸다</div><div><b><span class="mk-c">연결어</span></b>동그라미 — 개수만큼 동사 +1</div></div>
+    <div style="height:10px"></div>
+    <div class="ex"><div class="en">The <span class="mk-s">number</span> <span class="mk-x">(of students <span class="mk-c">who</span> walk to school)</span> <span class="mk-v">has decreased</span>.</div><div class="nt">수식어를 걷어 내면 <b>number … has decreased</b> — 머리 명사와 동사만 남는다.</div></div>
+    <div class="nt2">고칠 때는 지우지 않고 <b>다른 색</b>으로 위에 고쳐 쓴다 — 처음 쓴 것이 남아야 무엇이 늘었는지 보인다.</div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>들어가며</span><span class="sp">3 / 49</span></div>
+</section>
+<section class="sl" data-min="2">
+  <div class="hd">
+    <div class="tt"><h2>이 책은 이렇게 간다</h2><div class="sub">점검 여섯 쪽 → 회차 연습 → 기록표 → 정답</div></div>
+    <div class="badge"><span class="sec">들어가며</span><span class="min">2분</span></div>
+  </div>
+  <div class="bd">
+    <ol class="ls"><li><b>점검 순서 여섯 쪽</b> — 한 쪽에 한 단계. 연습 문장은 <b>일부러 다른 단계의 오류와 섞여</b> 있다.</li><li><b>회차 연습</b> — 문장 판정 12 → 밑줄 지문 3 → 밑줄 없이 찾기 2. 앱 「지문 어법 찾기」와 같은 문항.</li><li><b>점검 기록표</b> — 틀린 문항마다 「어느 단계에서 걸렀어야 했나」를 적는다.</li><li><b>정답과 해설</b> — 맞힌 문항도 <b>맞는 밑줄이 왜 맞는지</b> 견준다.</li></ol>
+    <div class="warn"><b>약속.</b> 「이번엔 수동태 문제겠지」 하고 들어가지 않는다. 하나를 찾았어도 <b>끝까지 여섯 단계</b>. 「있는 대로 고르기」「틀린 것의 개수」는 하나 찾고 멈추는 학생을 노린다.</div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>들어가며</span><span class="sp">4 / 49</span></div>
+</section>
+<section class="sl" data-min="4">
+  <div class="hd">
+    <div class="tt"><h2>점검 순서 한 장</h2><div class="sub">어떤 문장이든 이 순서로</div></div>
+    <div class="badge"><span class="sec">점검 순서</span><span class="min">4분</span></div>
+  </div>
+  <div class="bd">
+    <table class="tb sm"><tr><th style="width:170px">단계</th><th>스스로 묻는 말</th></tr><tr><td><b>① 동사</b></td><td>이 절의 동사는 딱 하나인가? 모양(시제·조동사 뒤)은 맞나?</td></tr><tr><td><b>② 주어</b></td><td>진짜 주어는 무엇이고, 동사의 수를 거기에 맞췄나?</td></tr><tr><td><b>③ 능동·수동</b></td><td>주어(꾸밈받는 말)가 직접 하나, 당하나?</td></tr><tr><td><b>④ 준동사</b></td><td>to / -ing / p.p. 중 그 자리에 맞는 모양인가?</td></tr><tr><td><b>⑤ 연결어</b></td><td>앞뒤를 잇는 말이 맞나? 뒤 문장이 완전한가?</td></tr><tr><td><b>⑥ 품사·대명사</b></td><td>그 자리에 형용사/부사, 비교 모양, 대명사가 맞나?</td></tr></table>
+    <div class="nt2">왜 이 순서인가 — <b>동사와 주어</b>가 문장의 뼈대다. 뼈대가 보여야 능동·수동이 판단되고, 준동사·연결어·꾸미는 말이 제자리에 있는지 보인다.</div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 순서</span><span class="sp">5 / 49</span></div>
+</section>
+<section class="sl" data-min="2">
+  <div class="hd">
+    <div class="tt"><h2>시간이 모자랄 때도</h2><div class="sub">순서를 줄이지 않는다</div></div>
+    <div class="badge"><span class="sec">점검 순서</span><span class="min">2분</span></div>
+  </div>
+  <div class="bd">
+    <div class="lead">①②를 먼저 끝내고, 나머지를 빠르게 돈다.</div>
+    <div class="rule"><div class="rt">왜 ①② 먼저</div><div class="rb">시험 오류의 절반 가까이가 <b>① 동사 · ② 주어</b>에서 걸린다. 뼈대를 잡으면 ③~⑥은 빨리 지나간다.</div></div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 순서</span><span class="sp">6 / 49</span></div>
+</section>
+<section class="sl part" data-min="0">
+  <div class="bd">
+    <h1>① 동사</h1>
+    <div class="cs">이 절의 동사는 딱 하나인가? 모양(시제·조동사 뒤)은 맞나?</div>
+    
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 1 / 6</span><span class="sp">7 / 49</span></div>
+</section>
+<section class="sl" data-min="2">
+  <div class="hd">
+    <div class="tt"><h2>① 동사 — 무엇을 보나</h2><div class="sub">이 절의 동사는 딱 하나인가? 모양(시제·조동사 뒤)은 맞나?</div></div>
+    <div class="badge"><span class="sec">점검 1 / 6</span><span class="min">2분</span></div>
+  </div>
+  <div class="bd">
+    <div class="rule"><div class="rt">이렇게 본다</div><div class="rb">접속사·관계사 하나당 동사가 하나 더 생긴다. 동사가 없으면 -ing·to 를 동사로 바꾸고, 둘이면 하나를 준동사로 바꾼다.</div></div>
+    <div class="lead">고1 지문의 문장은 길다.</div>
+    <div class="nt2">접속사·관계사 수를 세고 그보다 하나 많은 동사가 있는지 본다. 주어 뒤에 긴 수식어가 붙으면 진짜 동사가 빠지거나(-ing·to 로 잘못 씀), 반대로 수식어 자리에 동사가 들어가는 실수가 시험에 나온다.</div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 1 / 6</span><span class="sp">8 / 49</span></div>
+</section>
+<section class="sl" data-min="2">
+  <div class="hd">
+    <div class="tt"><h2>① 동사 — 고1 시험에 나오는 꼴</h2><div class="sub">이렇게 나오면 틀린 것 · 누르면 바른 꼴 (1/2)</div></div>
+    <div class="badge"><span class="sec">점검 1 / 6</span><span class="min">2분</span></div>
+  </div>
+  <div class="bd">
+    <div class="qa"><div class="qq"><span class="bad">✗</span> The man sitting on the bench feeding birds.</div><div class="aa hide"><div class="av">The man sitting on the bench feeds birds.</div><div class="aw">연결어 0개 → 동사 1개 필요, 지금 0개</div></div></div>
+    <div class="qa"><div class="qq"><span class="bad">✗</span> Students want to join the club must apply.</div><div class="aa hide"><div class="av">Students wanting(who want) to join the club must apply.</div><div class="aw">연결어 없이 동사 둘(want, must apply)</div></div></div>
+    <div class="qa"><div class="qq"><span class="bad">✗</span> She has left Seoul in 2019.</div><div class="aa hide"><div class="av">She left Seoul in 2019.</div><div class="aw">과거 시점 + 현재완료 ×</div></div></div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 1 / 6</span><span class="sp">9 / 49</span></div>
+</section>
+<section class="sl" data-min="2">
+  <div class="hd">
+    <div class="tt"><h2>① 동사 — 고1 시험에 나오는 꼴</h2><div class="sub">이렇게 나오면 틀린 것 · 누르면 바른 꼴 (2/2)</div></div>
+    <div class="badge"><span class="sec">점검 1 / 6</span><span class="min">2분</span></div>
+  </div>
+  <div class="bd">
+    <div class="qa"><div class="qq"><span class="bad">✗</span> By the time he arrived, the train already left.</div><div class="aa hide"><div class="av">By the time he arrived, the train had already left.</div><div class="aw">더 먼저 일어난 일 — 과거완료</div></div></div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 1 / 6</span><span class="sp">10 / 49</span></div>
+</section>
+<section class="sl" data-min="2">
+  <div class="hd">
+    <div class="tt"><h2>① 동사 — 훑기 시범</h2><div class="sub">①부터 순서대로 · 단계마다 눌러서 확인</div></div>
+    <div class="badge"><span class="sec">점검 1 / 6</span><span class="min">2분</span></div>
+  </div>
+  <div class="bd">
+    <div class="ex"><div class="en">People who exercise regularly tending to sleep better.</div></div>
+    <div class="qa"><div class="qq">1) <b>연결어</b></div><div class="aa hide"><div class="av">who 하나 → 동사 둘이어야 한다.</div></div></div>
+    <div class="qa"><div class="qq">2) <b>동사</b></div><div class="aa hide"><div class="av">exercise 하나뿐 — tending 은 동사가 못 된다.</div></div></div>
+    <div class="qa"><div class="qq">3) 다음 판단</div><div class="aa hide"><div class="av">tending → tend (주어 People 복수).</div></div></div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 1 / 6</span><span class="sp">11 / 49</span></div>
+</section>
+<section class="sl" data-min="1">
+  <div class="hd">
+    <div class="tt"><h2>① 동사 — 섞인 연습</h2><div class="sub">이 단계만 묻지 않는다 — 여섯 단계를 다 돈다 (1/2)</div></div>
+    <div class="badge"><span class="sec">점검 1 / 6</span><span class="min">1분</span></div>
+  </div>
+  <div class="bd">
+    <div class="qa"><div class="qq">1. The letter that she wrote to her parents was never sent. &nbsp;<b>O / X ?</b></div><div class="aa hide"><div class="av">O — 맞는 문장</div><div class="aw">여섯 단계를 다 돌아도 걸리는 곳이 없다</div></div></div>
+    <div class="qa"><div class="qq">2. Anyone wanting to enter the building needs an ID card. &nbsp;<b>O / X ?</b></div><div class="aa hide"><div class="av">O — 맞는 문장</div><div class="aw">여섯 단계를 다 돌아도 걸리는 곳이 없다</div></div></div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 1 / 6</span><span class="sp">12 / 49</span></div>
+</section>
+<section class="sl" data-min="1">
+  <div class="hd">
+    <div class="tt"><h2>① 동사 — 섞인 연습</h2><div class="sub">이 단계만 묻지 않는다 — 여섯 단계를 다 돈다 (2/2)</div></div>
+    <div class="badge"><span class="sec">점검 1 / 6</span><span class="min">1분</span></div>
+  </div>
+  <div class="bd">
+    <div class="qa"><div class="qq">3. The plan suggested by the committee being too expensive. &nbsp;<b>O / X ?</b></div><div class="aa hide"><div class="av">X — being → was</div><div class="aw">걸러지는 단계: ① 동사</div></div></div>
+    <div class="qa"><div class="qq">4. The quality of the products have improved. &nbsp;<b>O / X ?</b></div><div class="aa hide"><div class="av">X — have → has</div><div class="aw">걸러지는 단계: ② 주어</div></div></div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 1 / 6</span><span class="sp">13 / 49</span></div>
+</section>
+<section class="sl part" data-min="0">
+  <div class="bd">
+    <h1>② 주어</h1>
+    <div class="cs">진짜 주어는 무엇이고, 동사의 수를 거기에 맞췄나?</div>
+    
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 2 / 6</span><span class="sp">14 / 49</span></div>
+</section>
+<section class="sl" data-min="2">
+  <div class="hd">
+    <div class="tt"><h2>② 주어 — 무엇을 보나</h2><div class="sub">진짜 주어는 무엇이고, 동사의 수를 거기에 맞췄나?</div></div>
+    <div class="badge"><span class="sec">점검 2 / 6</span><span class="min">2분</span></div>
+  </div>
+  <div class="bd">
+    <div class="rule"><div class="rt">이렇게 본다</div><div class="rb">동사 바로 앞 낱말이 아니라 수식어(전치사구·관계절·분사구)를 걷어 낸 머리 명사를 본다.</div></div>
+    <div class="lead">주어와 동사 사이가 멀수록 함정이다.</div>
+    <div class="nt2">수식어를 괄호로 묶고 머리 명사만 남긴다. 동명사·to 부정사·명사절(what, that, whether)이 주어면 단수. 「the number of + 복수 = 단수」, 「a number of + 복수 = 복수」. not only A but also B, either A or B 는 B 에 맞춘다.</div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 2 / 6</span><span class="sp">15 / 49</span></div>
+</section>
+<section class="sl" data-min="2">
+  <div class="hd">
+    <div class="tt"><h2>② 주어 — 고1 시험에 나오는 꼴</h2><div class="sub">이렇게 나오면 틀린 것 · 누르면 바른 꼴 (1/2)</div></div>
+    <div class="badge"><span class="sec">점검 2 / 6</span><span class="min">2분</span></div>
+  </div>
+  <div class="bd">
+    <div class="qa"><div class="qq"><span class="bad">✗</span> The number of tourists have grown.</div><div class="aa hide"><div class="av">The number of tourists has grown.</div><div class="aw">the number(그 수)가 주어 — 단수</div></div></div>
+    <div class="qa"><div class="qq"><span class="bad">✗</span> Reading books help you think.</div><div class="aa hide"><div class="av">Reading books helps you think.</div><div class="aw">동명사 주어 — 단수</div></div></div>
+    <div class="qa"><div class="qq"><span class="bad">✗</span> What he said were true.</div><div class="aa hide"><div class="av">What he said was true.</div><div class="aw">what 절 주어 — 단수</div></div></div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 2 / 6</span><span class="sp">16 / 49</span></div>
+</section>
+<section class="sl" data-min="2">
+  <div class="hd">
+    <div class="tt"><h2>② 주어 — 고1 시험에 나오는 꼴</h2><div class="sub">이렇게 나오면 틀린 것 · 누르면 바른 꼴 (2/2)</div></div>
+    <div class="badge"><span class="sec">점검 2 / 6</span><span class="min">2분</span></div>
+  </div>
+  <div class="bd">
+    <div class="qa"><div class="qq"><span class="bad">✗</span> Not only I but also my sister like it.</div><div class="aa hide"><div class="av">Not only I but also my sister likes it.</div><div class="aw">B(my sister)에 맞춘다</div></div></div>
+    <div class="qa"><div class="qq"><span class="bad">✗</span> Many of the houses built in the 1900s is empty.</div><div class="aa hide"><div class="av">Many of the houses built in the 1900s are empty.</div><div class="aw">Many of + 복수 — 복수</div></div></div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 2 / 6</span><span class="sp">17 / 49</span></div>
+</section>
+<section class="sl" data-min="2">
+  <div class="hd">
+    <div class="tt"><h2>② 주어 — 훑기 시범</h2><div class="sub">①부터 순서대로 · 단계마다 눌러서 확인</div></div>
+    <div class="badge"><span class="sec">점검 2 / 6</span><span class="min">2분</span></div>
+  </div>
+  <div class="bd">
+    <div class="ex"><div class="en">The ability to solve problems with others are important in any job.</div></div>
+    <div class="qa"><div class="qq">1) <b>동사</b></div><div class="aa hide"><div class="av">are — 하나. 연결어 0개, 맞다.</div></div></div>
+    <div class="qa"><div class="qq">2) <b>주어</b></div><div class="aa hide"><div class="av">to solve problems with others 를 걷어 내면 The ability — 하나.</div></div></div>
+    <div class="qa"><div class="qq">3) 다음 판단</div><div class="aa hide"><div class="av">are → is. others·problems 에 끌리면 틀린다.</div></div></div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 2 / 6</span><span class="sp">18 / 49</span></div>
+</section>
+<section class="sl" data-min="1">
+  <div class="hd">
+    <div class="tt"><h2>② 주어 — 섞인 연습</h2><div class="sub">이 단계만 묻지 않는다 — 여섯 단계를 다 돈다 (1/2)</div></div>
+    <div class="badge"><span class="sec">점검 2 / 6</span><span class="min">1분</span></div>
+  </div>
+  <div class="bd">
+    <div class="qa"><div class="qq">1. A number of students were absent today. &nbsp;<b>O / X ?</b></div><div class="aa hide"><div class="av">O — 맞는 문장</div><div class="aw">여섯 단계를 다 돌아도 걸리는 곳이 없다</div></div></div>
+    <div class="qa"><div class="qq">2. Whether we win or lose doesn't matter. &nbsp;<b>O / X ?</b></div><div class="aa hide"><div class="av">O — 맞는 문장</div><div class="aw">여섯 단계를 다 돌아도 걸리는 곳이 없다</div></div></div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 2 / 6</span><span class="sp">19 / 49</span></div>
+</section>
+<section class="sl" data-min="1">
+  <div class="hd">
+    <div class="tt"><h2>② 주어 — 섞인 연습</h2><div class="sub">이 단계만 묻지 않는다 — 여섯 단계를 다 돈다 (2/2)</div></div>
+    <div class="badge"><span class="sec">점검 2 / 6</span><span class="min">1분</span></div>
+  </div>
+  <div class="bd">
+    <div class="qa"><div class="qq">3. The paintings displayed in the hall was donated. &nbsp;<b>O / X ?</b></div><div class="aa hide"><div class="av">X — was → were</div><div class="aw">걸러지는 단계: ② 주어</div></div></div>
+    <div class="qa"><div class="qq">4. He kept silently during the meeting. &nbsp;<b>O / X ?</b></div><div class="aa hide"><div class="av">X — silently → silent</div><div class="aw">걸러지는 단계: ⑥ 품사·대명사</div></div></div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 2 / 6</span><span class="sp">20 / 49</span></div>
+</section>
+<section class="sl part" data-min="0">
+  <div class="bd">
+    <h1>③ 능동·수동</h1>
+    <div class="cs">주어(꾸밈받는 말)가 직접 하나, 당하나?</div>
+    
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 3 / 6</span><span class="sp">21 / 49</span></div>
+</section>
+<section class="sl" data-min="2">
+  <div class="hd">
+    <div class="tt"><h2>③ 능동·수동 — 무엇을 보나</h2><div class="sub">주어(꾸밈받는 말)가 직접 하나, 당하나?</div></div>
+    <div class="badge"><span class="sec">점검 3 / 6</span><span class="min">2분</span></div>
+  </div>
+  <div class="bd">
+    <div class="rule"><div class="rt">이렇게 본다</div><div class="rb">「누가 ~했나」를 묻는다. 주어가 그 일을 스스로 못 하면 be + p.p., 명사를 꾸밀 때는 p.p.</div></div>
+    <div class="lead">동사뿐 아니라 명사를 꾸미는 분사, 분사구문에도 능동·수동을 묻는다.</div>
+    <div class="nt2">꾸밈받는 명사(분사구문이면 주절의 주어)가 그 일을 「하면」 -ing, 「당하면」 p.p.. 조동사·to 뒤에서는 be + p.p. 모양을 확인한다.</div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 3 / 6</span><span class="sp">22 / 49</span></div>
+</section>
+<section class="sl" data-min="2">
+  <div class="hd">
+    <div class="tt"><h2>③ 능동·수동 — 고1 시험에 나오는 꼴</h2><div class="sub">이렇게 나오면 틀린 것 · 누르면 바른 꼴 (1/2)</div></div>
+    <div class="badge"><span class="sec">점검 3 / 6</span><span class="min">2분</span></div>
+  </div>
+  <div class="bd">
+    <div class="qa"><div class="qq"><span class="bad">✗</span> The data collecting last year were wrong.</div><div class="aa hide"><div class="av">The data collected last year were wrong.</div><div class="aw">자료는 「수집된」 것</div></div></div>
+    <div class="qa"><div class="qq"><span class="bad">✗</span> Seeing from above, the city looks tiny.</div><div class="aa hide"><div class="av">Seen from above, the city looks tiny.</div><div class="aw">도시는 「보이는」 쪽</div></div></div>
+    <div class="qa"><div class="qq"><span class="bad">✗</span> The problem must solve quickly.</div><div class="aa hide"><div class="av">The problem must be solved quickly.</div><div class="aw">문제는 「풀리는」 것</div></div></div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 3 / 6</span><span class="sp">23 / 49</span></div>
+</section>
+<section class="sl" data-min="2">
+  <div class="hd">
+    <div class="tt"><h2>③ 능동·수동 — 고1 시험에 나오는 꼴</h2><div class="sub">이렇게 나오면 틀린 것 · 누르면 바른 꼴 (2/2)</div></div>
+    <div class="badge"><span class="sec">점검 3 / 6</span><span class="min">2분</span></div>
+  </div>
+  <div class="bd">
+    <div class="qa"><div class="qq"><span class="bad">✗</span> The bridge is being repair now.</div><div class="aa hide"><div class="av">The bridge is being repaired now.</div><div class="aw">진행 수동 be being + p.p.</div></div></div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 3 / 6</span><span class="sp">24 / 49</span></div>
+</section>
+<section class="sl" data-min="2">
+  <div class="hd">
+    <div class="tt"><h2>③ 능동·수동 — 훑기 시범</h2><div class="sub">①부터 순서대로 · 단계마다 눌러서 확인</div></div>
+    <div class="badge"><span class="sec">점검 3 / 6</span><span class="min">2분</span></div>
+  </div>
+  <div class="bd">
+    <div class="ex"><div class="en">Surrounded by mountains, the village receiving little sunlight in winter.</div></div>
+    <div class="qa"><div class="qq">1) <b>동사</b></div><div class="aa hide"><div class="av">연결어 0개, 동사가 없다 — receiving 이 동사 자리.</div></div></div>
+    <div class="qa"><div class="qq">2) <b>능동·수동</b></div><div class="aa hide"><div class="av">마을이 햇빛을 「받는다」 — 능동. Surrounded 는 마을이 「둘러싸인」 것 — 수동 맞다.</div></div></div>
+    <div class="qa"><div class="qq">3) 다음 판단</div><div class="aa hide"><div class="av">receiving → receives.</div></div></div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 3 / 6</span><span class="sp">25 / 49</span></div>
+</section>
+<section class="sl" data-min="1">
+  <div class="hd">
+    <div class="tt"><h2>③ 능동·수동 — 섞인 연습</h2><div class="sub">이 단계만 묻지 않는다 — 여섯 단계를 다 돈다 (1/2)</div></div>
+    <div class="badge"><span class="sec">점검 3 / 6</span><span class="min">1분</span></div>
+  </div>
+  <div class="bd">
+    <div class="qa"><div class="qq">1. The novel, written in 1850, is still widely read. &nbsp;<b>O / X ?</b></div><div class="aa hide"><div class="av">O — 맞는 문장</div><div class="aw">여섯 단계를 다 돌아도 걸리는 곳이 없다</div></div></div>
+    <div class="qa"><div class="qq">2. The results will announce next week. &nbsp;<b>O / X ?</b></div><div class="aa hide"><div class="av">X — will announce → will be announced</div><div class="aw">걸러지는 단계: ③ 능동·수동</div></div></div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 3 / 6</span><span class="sp">26 / 49</span></div>
+</section>
+<section class="sl" data-min="1">
+  <div class="hd">
+    <div class="tt"><h2>③ 능동·수동 — 섞인 연습</h2><div class="sub">이 단계만 묻지 않는다 — 여섯 단계를 다 돈다 (2/2)</div></div>
+    <div class="badge"><span class="sec">점검 3 / 6</span><span class="min">1분</span></div>
+  </div>
+  <div class="bd">
+    <div class="qa"><div class="qq">3. Compared with last year, sales have doubled. &nbsp;<b>O / X ?</b></div><div class="aa hide"><div class="av">O — 맞는 문장</div><div class="aw">여섯 단계를 다 돌아도 걸리는 곳이 없다</div></div></div>
+    <div class="qa"><div class="qq">4. This is the town which I grew up. &nbsp;<b>O / X ?</b></div><div class="aa hide"><div class="av">X — which → where (in which)</div><div class="aw">걸러지는 단계: ⑤ 연결어</div></div></div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 3 / 6</span><span class="sp">27 / 49</span></div>
+</section>
+<section class="sl part" data-min="0">
+  <div class="bd">
+    <h1>④ 준동사</h1>
+    <div class="cs">to / -ing / p.p. 중 그 자리에 맞는 모양인가?</div>
+    
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 4 / 6</span><span class="sp">28 / 49</span></div>
+</section>
+<section class="sl" data-min="2">
+  <div class="hd">
+    <div class="tt"><h2>④ 준동사 — 무엇을 보나</h2><div class="sub">to / -ing / p.p. 중 그 자리에 맞는 모양인가?</div></div>
+    <div class="badge"><span class="sec">점검 4 / 6</span><span class="min">2분</span></div>
+  </div>
+  <div class="bd">
+    <div class="rule"><div class="rt">이렇게 본다</div><div class="rb">앞 동사가 정한다(enjoy -ing, want to, make + 원형). 감정은 「느끼게 하면 -ing, 느끼면 -ed」.</div></div>
+    <div class="lead">앞 동사·전치사가 모양을 정한다.</div>
+    <div class="nt2">전치사 뒤는 -ing(to 가 전치사인 look forward to, be used to, object to 포함). 5형식 목적격보어: 사역(make·have·let)은 원형, 지각(see·hear)은 원형/-ing, want·ask·allow·encourage 는 to. 「목적어가 당하면」 p.p.</div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 4 / 6</span><span class="sp">29 / 49</span></div>
+</section>
+<section class="sl" data-min="2">
+  <div class="hd">
+    <div class="tt"><h2>④ 준동사 — 고1 시험에 나오는 꼴</h2><div class="sub">이렇게 나오면 틀린 것 · 누르면 바른 꼴 (1/2)</div></div>
+    <div class="badge"><span class="sec">점검 4 / 6</span><span class="min">2분</span></div>
+  </div>
+  <div class="bd">
+    <div class="qa"><div class="qq"><span class="bad">✗</span> I look forward to see you.</div><div class="aa hide"><div class="av">I look forward to seeing you.</div><div class="aw">to 가 전치사 — 뒤는 -ing</div></div></div>
+    <div class="qa"><div class="qq"><span class="bad">✗</span> She asked me help her.</div><div class="aa hide"><div class="av">She asked me to help her.</div><div class="aw">ask + 목적어 + to</div></div></div>
+    <div class="qa"><div class="qq"><span class="bad">✗</span> I had my hair cutting.</div><div class="aa hide"><div class="av">I had my hair cut.</div><div class="aw">머리는 「잘리는」 쪽 — p.p.</div></div></div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 4 / 6</span><span class="sp">30 / 49</span></div>
+</section>
+<section class="sl" data-min="2">
+  <div class="hd">
+    <div class="tt"><h2>④ 준동사 — 고1 시험에 나오는 꼴</h2><div class="sub">이렇게 나오면 틀린 것 · 누르면 바른 꼴 (2/2)</div></div>
+    <div class="badge"><span class="sec">점검 4 / 6</span><span class="min">2분</span></div>
+  </div>
+  <div class="bd">
+    <div class="qa"><div class="qq"><span class="bad">✗</span> He avoided to answer the question.</div><div class="aa hide"><div class="av">He avoided answering the question.</div><div class="aw">avoid 는 -ing</div></div></div>
+    <div class="qa"><div class="qq"><span class="bad">✗</span> The news was shocked.</div><div class="aa hide"><div class="av">The news was shocking.</div><div class="aw">소식은 충격을 「주는」 쪽</div></div></div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 4 / 6</span><span class="sp">31 / 49</span></div>
+</section>
+<section class="sl" data-min="2">
+  <div class="hd">
+    <div class="tt"><h2>④ 준동사 — 훑기 시범</h2><div class="sub">①부터 순서대로 · 단계마다 눌러서 확인</div></div>
+    <div class="badge"><span class="sec">점검 4 / 6</span><span class="min">2분</span></div>
+  </div>
+  <div class="bd">
+    <div class="ex"><div class="en">The teacher encouraged us thinking about the problem differently.</div></div>
+    <div class="qa"><div class="qq">1) <b>동사</b></div><div class="aa hide"><div class="av">encouraged — 하나. 주어 The teacher 맞다.</div></div></div>
+    <div class="qa"><div class="qq">2) <b>준동사</b></div><div class="aa hide"><div class="av">encourage + 목적어 + to.</div></div></div>
+    <div class="qa"><div class="qq">3) 다음 판단</div><div class="aa hide"><div class="av">thinking → to think.</div></div></div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 4 / 6</span><span class="sp">32 / 49</span></div>
+</section>
+<section class="sl" data-min="1">
+  <div class="hd">
+    <div class="tt"><h2>④ 준동사 — 섞인 연습</h2><div class="sub">이 단계만 묻지 않는다 — 여섯 단계를 다 돈다 (1/2)</div></div>
+    <div class="badge"><span class="sec">점검 4 / 6</span><span class="min">1분</span></div>
+  </div>
+  <div class="bd">
+    <div class="qa"><div class="qq">1. She is used to getting up early. &nbsp;<b>O / X ?</b></div><div class="aa hide"><div class="av">O — 맞는 문장</div><div class="aw">여섯 단계를 다 돌아도 걸리는 곳이 없다</div></div></div>
+    <div class="qa"><div class="qq">2. Let me to explain the reason. &nbsp;<b>O / X ?</b></div><div class="aa hide"><div class="av">X — to explain → explain</div><div class="aw">걸러지는 단계: ④ 준동사</div></div></div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 4 / 6</span><span class="sp">33 / 49</span></div>
+</section>
+<section class="sl" data-min="1">
+  <div class="hd">
+    <div class="tt"><h2>④ 준동사 — 섞인 연습</h2><div class="sub">이 단계만 묻지 않는다 — 여섯 단계를 다 돈다 (2/2)</div></div>
+    <div class="badge"><span class="sec">점검 4 / 6</span><span class="min">1분</span></div>
+  </div>
+  <div class="bd">
+    <div class="qa"><div class="qq">3. I heard someone calling my name. &nbsp;<b>O / X ?</b></div><div class="aa hide"><div class="av">O — 맞는 문장</div><div class="aw">여섯 단계를 다 돌아도 걸리는 곳이 없다</div></div></div>
+    <div class="qa"><div class="qq">4. Each of the rooms have a window. &nbsp;<b>O / X ?</b></div><div class="aa hide"><div class="av">X — have → has</div><div class="aw">걸러지는 단계: ② 주어</div></div></div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 4 / 6</span><span class="sp">34 / 49</span></div>
+</section>
+<section class="sl part" data-min="0">
+  <div class="bd">
+    <h1>⑤ 연결어</h1>
+    <div class="cs">앞뒤를 잇는 말이 맞나? 뒤 문장이 완전한가?</div>
+    
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 5 / 6</span><span class="sp">35 / 49</span></div>
+</section>
+<section class="sl" data-min="2">
+  <div class="hd">
+    <div class="tt"><h2>⑤ 연결어 — 무엇을 보나</h2><div class="sub">앞뒤를 잇는 말이 맞나? 뒤 문장이 완전한가?</div></div>
+    <div class="badge"><span class="sec">점검 5 / 6</span><span class="min">2분</span></div>
+  </div>
+  <div class="bd">
+    <div class="rule"><div class="rt">이렇게 본다</div><div class="rb">뒤가 불완전(주어·목적어 빠짐)하면 관계대명사·what, 완전하면 관계부사·접속사 that. 콤마 뒤엔 that 못 쓴다.</div></div>
+    <div class="lead">뒤 문장이 완전한지부터 본다.</div>
+    <div class="nt2">주어·목적어가 빠졌으면 관계대명사(who, which, that) 또는 what, 다 있으면 관계부사(where, when, why, how)나 접속사 that. what 은 앞에 명사(선행사)가 없을 때만. 콤마 뒤와 전치사 바로 뒤에는 that 을 쓰지 않는다.</div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 5 / 6</span><span class="sp">36 / 49</span></div>
+</section>
+<section class="sl" data-min="2">
+  <div class="hd">
+    <div class="tt"><h2>⑤ 연결어 — 고1 시험에 나오는 꼴</h2><div class="sub">이렇게 나오면 틀린 것 · 누르면 바른 꼴 (1/2)</div></div>
+    <div class="badge"><span class="sec">점검 5 / 6</span><span class="min">2분</span></div>
+  </div>
+  <div class="bd">
+    <div class="qa"><div class="qq"><span class="bad">✗</span> This is that I wanted.</div><div class="aa hide"><div class="av">This is what I wanted.</div><div class="aw">선행사 없음 + wanted 의 목적어 빠짐 → what</div></div></div>
+    <div class="qa"><div class="qq"><span class="bad">✗</span> The fact what he lied shocked us.</div><div class="aa hide"><div class="av">The fact that he lied shocked us.</div><div class="aw">he lied 는 완전 — 동격 that</div></div></div>
+    <div class="qa"><div class="qq"><span class="bad">✗</span> My car, that I bought last year, broke down.</div><div class="aa hide"><div class="av">My car, which I bought last year, broke down.</div><div class="aw">콤마 뒤 that ×</div></div></div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 5 / 6</span><span class="sp">37 / 49</span></div>
+</section>
+<section class="sl" data-min="2">
+  <div class="hd">
+    <div class="tt"><h2>⑤ 연결어 — 고1 시험에 나오는 꼴</h2><div class="sub">이렇게 나오면 틀린 것 · 누르면 바른 꼴 (2/2)</div></div>
+    <div class="badge"><span class="sec">점검 5 / 6</span><span class="min">2분</span></div>
+  </div>
+  <div class="bd">
+    <div class="qa"><div class="qq"><span class="bad">✗</span> The city which I visited it was clean.</div><div class="aa hide"><div class="av">The city which I visited was clean.</div><div class="aw">관계절 안 목적어 it 은 빠져야 한다</div></div></div>
+    <div class="qa"><div class="qq"><span class="bad">✗</span> I remember the day which we first met.</div><div class="aa hide"><div class="av">I remember the day when we first met.</div><div class="aw">we first met 완전 — 시간 when</div></div></div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 5 / 6</span><span class="sp">38 / 49</span></div>
+</section>
+<section class="sl" data-min="2">
+  <div class="hd">
+    <div class="tt"><h2>⑤ 연결어 — 훑기 시범</h2><div class="sub">①부터 순서대로 · 단계마다 눌러서 확인</div></div>
+    <div class="badge"><span class="sec">점검 5 / 6</span><span class="min">2분</span></div>
+  </div>
+  <div class="bd">
+    <div class="ex"><div class="en">The reason which she left early was not clear.</div></div>
+    <div class="qa"><div class="qq">1) <b>동사</b></div><div class="aa hide"><div class="av">left, was — 연결어 하나, 동사 둘. 맞다.</div></div></div>
+    <div class="qa"><div class="qq">2) <b>연결어</b></div><div class="aa hide"><div class="av">she left early — 주어·목적어 다 있다(완전). 관계대명사 which 는 못 온다.</div></div></div>
+    <div class="qa"><div class="qq">3) 다음 판단</div><div class="aa hide"><div class="av">which → why.</div></div></div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 5 / 6</span><span class="sp">39 / 49</span></div>
+</section>
+<section class="sl" data-min="1">
+  <div class="hd">
+    <div class="tt"><h2>⑤ 연결어 — 섞인 연습</h2><div class="sub">이 단계만 묻지 않는다 — 여섯 단계를 다 돈다 (1/2)</div></div>
+    <div class="badge"><span class="sec">점검 5 / 6</span><span class="min">1분</span></div>
+  </div>
+  <div class="bd">
+    <div class="qa"><div class="qq">1. What matters most is your effort. &nbsp;<b>O / X ?</b></div><div class="aa hide"><div class="av">O — 맞는 문장</div><div class="aw">여섯 단계를 다 돌아도 걸리는 곳이 없다</div></div></div>
+    <div class="qa"><div class="qq">2. He showed me the house in that he was born. &nbsp;<b>O / X ?</b></div><div class="aa hide"><div class="av">X — that → which (where)</div><div class="aw">걸러지는 단계: ⑤ 연결어</div></div></div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 5 / 6</span><span class="sp">40 / 49</span></div>
+</section>
+<section class="sl" data-min="1">
+  <div class="hd">
+    <div class="tt"><h2>⑤ 연결어 — 섞인 연습</h2><div class="sub">이 단계만 묻지 않는다 — 여섯 단계를 다 돈다 (2/2)</div></div>
+    <div class="badge"><span class="sec">점검 5 / 6</span><span class="min">1분</span></div>
+  </div>
+  <div class="bd">
+    <div class="qa"><div class="qq">3. She is the person whom I trust most. &nbsp;<b>O / X ?</b></div><div class="aa hide"><div class="av">O — 맞는 문장</div><div class="aw">여섯 단계를 다 돌아도 걸리는 곳이 없다</div></div></div>
+    <div class="qa"><div class="qq">4. The children was playing happily outside. &nbsp;<b>O / X ?</b></div><div class="aa hide"><div class="av">X — was → were</div><div class="aw">걸러지는 단계: ② 주어</div></div></div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 5 / 6</span><span class="sp">41 / 49</span></div>
+</section>
+<section class="sl part" data-min="0">
+  <div class="bd">
+    <h1>⑥ 품사·대명사</h1>
+    <div class="cs">그 자리에 형용사/부사, 비교 모양, 대명사가 맞나?</div>
+    
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 6 / 6</span><span class="sp">42 / 49</span></div>
+</section>
+<section class="sl" data-min="2">
+  <div class="hd">
+    <div class="tt"><h2>⑥ 품사·대명사 — 무엇을 보나</h2><div class="sub">그 자리에 형용사/부사, 비교 모양, 대명사가 맞나?</div></div>
+    <div class="badge"><span class="sec">점검 6 / 6</span><span class="min">2분</span></div>
+  </div>
+  <div class="bd">
+    <div class="rule"><div class="rt">이렇게 본다</div><div class="rb">명사를 꾸미거나 be·감각동사 뒤면 형용사, 동사·형용사·문장을 꾸미면 부사. 대명사는 가리키는 말의 수를 센다.</div></div>
+    <div class="lead">형용사/부사 자리는 문장 구조로 정한다: 5형식 목적격보어(keep·find·make + 목적어 + ?)는 형용사, 동사·형용사·문장 전체를 꾸미면 부사. 비교는 than·as ~ as 짝을 본다.</div>
+    <div class="nt2">대명사는 가리키는 말을 찾아 수(it/they)와 재귀(목적어가 주어 자신이면 -self)를 맞춘다.</div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 6 / 6</span><span class="sp">43 / 49</span></div>
+</section>
+<section class="sl" data-min="2">
+  <div class="hd">
+    <div class="tt"><h2>⑥ 품사·대명사 — 고1 시험에 나오는 꼴</h2><div class="sub">이렇게 나오면 틀린 것 · 누르면 바른 꼴 (1/2)</div></div>
+    <div class="badge"><span class="sec">점검 6 / 6</span><span class="min">2분</span></div>
+  </div>
+  <div class="bd">
+    <div class="qa"><div class="qq"><span class="bad">✗</span> Keep the room warmly.</div><div class="aa hide"><div class="av">Keep the room warm.</div><div class="aw">목적격보어 — 방의 상태, 형용사</div></div></div>
+    <div class="qa"><div class="qq"><span class="bad">✗</span> The plan seems perfectly.</div><div class="aa hide"><div class="av">The plan seems perfect.</div><div class="aw">seem 뒤 — 주어의 상태</div></div></div>
+    <div class="qa"><div class="qq"><span class="bad">✗</span> She is as tall than her mother.</div><div class="aa hide"><div class="av">She is as tall as her mother.</div><div class="aw">as ~ as 짝</div></div></div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 6 / 6</span><span class="sp">44 / 49</span></div>
+</section>
+<section class="sl" data-min="2">
+  <div class="hd">
+    <div class="tt"><h2>⑥ 품사·대명사 — 고1 시험에 나오는 꼴</h2><div class="sub">이렇게 나오면 틀린 것 · 누르면 바른 꼴 (2/2)</div></div>
+    <div class="badge"><span class="sec">점검 6 / 6</span><span class="min">2분</span></div>
+  </div>
+  <div class="bd">
+    <div class="qa"><div class="qq"><span class="bad">✗</span> He introduced him to the class.</div><div class="aa hide"><div class="av">He introduced himself to the class.</div><div class="aw">주어 자신 — 재귀</div></div></div>
+    <div class="qa"><div class="qq"><span class="bad">✗</span> Plants need light to make its food.</div><div class="aa hide"><div class="av">Plants need light to make their food.</div><div class="aw">Plants 복수 — their</div></div></div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 6 / 6</span><span class="sp">45 / 49</span></div>
+</section>
+<section class="sl" data-min="2">
+  <div class="hd">
+    <div class="tt"><h2>⑥ 품사·대명사 — 훑기 시범</h2><div class="sub">①부터 순서대로 · 단계마다 눌러서 확인</div></div>
+    <div class="badge"><span class="sec">점검 6 / 6</span><span class="min">2분</span></div>
+  </div>
+  <div class="bd">
+    <div class="ex"><div class="en">The new rules made the process more efficiently.</div></div>
+    <div class="qa"><div class="qq">1) <b>동사</b></div><div class="aa hide"><div class="av">made — 하나. 주어 The new rules 복수, made 는 과거라 수 상관없다.</div></div></div>
+    <div class="qa"><div class="qq">2) <b>품사</b></div><div class="aa hide"><div class="av">make + the process + ? — 목적어의 상태.</div></div></div>
+    <div class="qa"><div class="qq">3) 다음 판단</div><div class="aa hide"><div class="av">efficiently → efficient.</div></div></div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 6 / 6</span><span class="sp">46 / 49</span></div>
+</section>
+<section class="sl" data-min="1">
+  <div class="hd">
+    <div class="tt"><h2>⑥ 품사·대명사 — 섞인 연습</h2><div class="sub">이 단계만 묻지 않는다 — 여섯 단계를 다 돈다 (1/2)</div></div>
+    <div class="badge"><span class="sec">점검 6 / 6</span><span class="min">1분</span></div>
+  </div>
+  <div class="bd">
+    <div class="qa"><div class="qq">1. She found the movie surprisingly boring. &nbsp;<b>O / X ?</b></div><div class="aa hide"><div class="av">O — 맞는 문장</div><div class="aw">여섯 단계를 다 돌아도 걸리는 곳이 없다</div></div></div>
+    <div class="qa"><div class="qq">2. Wild animals must protect themselves from danger. &nbsp;<b>O / X ?</b></div><div class="aa hide"><div class="av">O — 맞는 문장</div><div class="aw">여섯 단계를 다 돌아도 걸리는 곳이 없다</div></div></div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 6 / 6</span><span class="sp">47 / 49</span></div>
+</section>
+<section class="sl" data-min="1">
+  <div class="hd">
+    <div class="tt"><h2>⑥ 품사·대명사 — 섞인 연습</h2><div class="sub">이 단계만 묻지 않는다 — 여섯 단계를 다 돈다 (2/2)</div></div>
+    <div class="badge"><span class="sec">점검 6 / 6</span><span class="min">1분</span></div>
+  </div>
+  <div class="bd">
+    <div class="qa"><div class="qq">3. Students should be allowed using phones at lunch. &nbsp;<b>O / X ?</b></div><div class="aa hide"><div class="av">X — using → to use</div><div class="aw">걸러지는 단계: ④ 준동사</div></div></div>
+    <div class="qa"><div class="qq">4. The town where my grandparents live is very quiet. &nbsp;<b>O / X ?</b></div><div class="aa hide"><div class="av">O — 맞는 문장</div><div class="aw">여섯 단계를 다 돌아도 걸리는 곳이 없다</div></div></div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>점검 6 / 6</span><span class="sp">48 / 49</span></div>
+</section>
+<section class="sl" data-min="2">
+  <div class="hd">
+    <div class="tt"><h2>이제 1회차로</h2><div class="sub">앱에서 먼저 풀고, 노트에서 손으로 표시하며 다시 본다</div></div>
+    <div class="badge"><span class="sec">정리</span><span class="min">2분</span></div>
+  </div>
+  <div class="bd">
+    <table class="tb sm"><tr><th style="width:170px">단계</th><th>이렇게 본다</th></tr><tr><td><b>① 동사</b></td><td>접속사·관계사 하나당 동사가 하나 더 생긴다. 동사가 없으면 -ing·to 를 동사로 바꾸고, 둘이면 하나를 준동사로 바꾼다.</td></tr><tr><td><b>② 주어</b></td><td>동사 바로 앞 낱말이 아니라 수식어(전치사구·관계절·분사구)를 걷어 낸 머리 명사를 본다.</td></tr><tr><td><b>③ 능동·수동</b></td><td>「누가 ~했나」를 묻는다. 주어가 그 일을 스스로 못 하면 be + p.p., 명사를 꾸밀 때는 p.p.</td></tr><tr><td><b>④ 준동사</b></td><td>앞 동사가 정한다(enjoy -ing, want to, make + 원형). 감정은 「느끼게 하면 -ing, 느끼면 -ed」.</td></tr><tr><td><b>⑤ 연결어</b></td><td>뒤가 불완전(주어·목적어 빠짐)하면 관계대명사·what, 완전하면 관계부사·접속사 that. 콤마 뒤엔 that 못 쓴다.</td></tr><tr><td><b>⑥ 품사·대명사</b></td><td>명사를 꾸미거나 be·감각동사 뒤면 형용사, 동사·형용사·문장을 꾸미면 부사. 대명사는 가리키는 말의 수를 센다.</td></tr></table>
+    <div class="star">틀린 문항은 점검 기록표에 <b>「어느 단계에서 걸렀어야 했나」</b>를 적는다 — 쌓이면 내가 건너뛰는 단계가 보인다.</div>
+  </div>
+  <div class="ft"><b>오르다 지문 어법 · 고1 · 들어가며</b><span>정리</span><span class="sp">49 / 49</span></div>
+</section>
+</div>
+<div id="bar">
+  <button id="bprev">◂ 이전</button><button id="bnext">다음 ▸</button>
+  <span class="pg" id="pg"></span>
+  <span id="tm"></span>
+  <span class="sp"></span>
+  <button id="ball">이 장 답 모두 보기 (Shift+A)</button>
+  <button id="bmode">한 장씩</button>
+  <button id="bfs">전체 화면 (F)</button>
+</div>
+<script>
+(function(){
+  var sls=[].slice.call(document.querySelectorAll('.sl')), i=0, one=false;
+  var pg=document.getElementById('pg'), tm=document.getElementById('tm');
+  var mins=sls.map(function(s){return +(s.getAttribute('data-min')||0)});
+  function acc(n){var t=0;for(var j=0;j<=n;j++)t+=mins[j];return t}
+  function show(n){
+    i=Math.max(0,Math.min(sls.length-1,n));
+    sls.forEach(function(s,j){s.classList.toggle('on',j===i)});
+    pg.textContent=(i+1)+' / '+sls.length;
+    tm.textContent='누적 '+acc(i)+'분';
+    if(!one) sls[i].scrollIntoView({block:'center'});
+  }
+  function setOne(v){
+    one=v; document.body.classList.toggle('one',v);
+    document.getElementById('bmode').textContent=v?'전체 보기':'한 장씩';
+    show(i);
+  }
+  function reveal(all){
+    var box=one?sls[i]:document.elementFromPoint(innerWidth/2,innerHeight/2);
+    var s=one?sls[i]:(box&&box.closest?box.closest('.sl'):null)||sls[i];
+    var hs=s.querySelectorAll('.aa.hide');
+    if(!hs.length)return;
+    if(all){[].forEach.call(hs,function(e){e.classList.remove('hide')});}
+    else hs[0].classList.remove('hide');
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('.aa');
+    if(a){a.classList.toggle('hide');return}
+  });
+  document.addEventListener('keydown',function(e){
+    var k=e.key;
+    if(k==='ArrowRight'||k==='PageDown'||k===' '){e.preventDefault();show(i+1)}
+    else if(k==='ArrowLeft'||k==='PageUp'){e.preventDefault();show(i-1)}
+    else if(k==='Home'){show(0)} else if(k==='End'){show(sls.length-1)}
+    else if(k==='a'||k==='A'){e.preventDefault();reveal(e.shiftKey)}
+    else if(k==='o'||k==='O'){setOne(!one)}
+    else if(k==='f'||k==='F'){if(document.fullscreenElement)document.exitFullscreen();else document.documentElement.requestFullscreen()}
+  });
+  document.getElementById('bprev').onclick=function(){show(i-1)};
+  document.getElementById('bnext').onclick=function(){show(i+1)};
+  document.getElementById('bmode').onclick=function(){setOne(!one)};
+  document.getElementById('ball').onclick=function(){reveal(true)};
+  document.getElementById('bfs').onclick=function(){if(document.fullscreenElement)document.exitFullscreen();else document.documentElement.requestFullscreen()};
+  setOne(true);
+  /* 화면 폭에 맞춰 줄인다 — 전자칠판 해상도가 제각각이다 */
+  function fit(){
+    var s=Math.min((innerWidth-24)/1280,(innerHeight-70)/720,1);
+    document.querySelector('.deck').style.zoom=one?s:'';
+  }
+  addEventListener('resize',fit); fit();
+  var _so=setOne; setOne=function(v){_so(v);fit()};
+})();</script>
+</body></html>
